@@ -1,5 +1,13 @@
-const totalPrice = ({ price, discount, isInstallment, months }) => {
-    // Your code here...
+interface TotalPriceArgument {
+    price: number;
+    discount: number;
+    isInstallment: boolean;
+    months: number;
+}
+
+const totalPrice = ({ price, discount, isInstallment, months }: TotalPriceArgument) : number => {
+    let total = price * (1 - discount / 100);
+    return isInstallment ? total /= months : total;
 };
 
 const price = totalPrice({ price: 100000, discount: 25, isInstallment: true, months: 12 });
